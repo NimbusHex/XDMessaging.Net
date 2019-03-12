@@ -174,7 +174,7 @@ namespace XDMessaging.Transport.IOStream
                 }
 
                 string rawmessage;
-                using (var stream = File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (var stream = File.Open(fullPath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite | System.IO.FileShare.Delete))
                 {
                     using (var reader = new StreamReader(stream))
                     {
@@ -193,16 +193,16 @@ namespace XDMessaging.Transport.IOStream
             }
             catch (UnauthorizedAccessException ue)
             {
-                throw new UnauthorizedAccessException(
+                /*throw new UnauthorizedAccessException(
                     "Unable to bind to channel as access is denied." +
                     $" Ensure the process has read/write access to the directory '{fullPath}'.",
-                    ue);
+                    ue);*/
             }
             catch (IOException ie)
             {
-                throw new IOException(
+                /*throw new IOException(
                     "There was an unexpected IO error binding to a channel." +
-                    $" Ensure the process is unable to read/write to directory '{fullPath}'.", ie);
+                    $" Ensure the process is unable to read/write to directory '{fullPath}'.", ie);*/
             }
         }
 
